@@ -1,0 +1,110 @@
+import Image from "next/image";
+import React from "react";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import RippleButton from "@/app/ripple-button";
+import fetcher from "@/fetcher";
+import { Product } from "@/models";
+import BackButton from "./back-button";
+import BuyActionButton from "@/app/buy-action-button";
+
+async function getData(product_id: string) {
+  const res = await fetcher(`commerce/product/${product_id}`);
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function Page({
+  params: { product_id },
+}: {
+  params: { product_id: string };
+}) {
+  const data: Product = await getData(product_id);
+
+  return (
+    <div key={3} className="grid grid-cols-2 gap-36 items-end">
+      <div className="space-y-12">
+        <BackButton />
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">{data.title}</h2>
+          <p>{data.description}</p>
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold">$ {data.price}</h2>
+        </div>
+        <div className="space-y-2">
+          <h5>Color</h5>
+          <div className="flex gap-4 items-center">
+            {["lime", "teal", "amber"].map((color, i) => (
+              <div
+                key={i}
+                className={`w-8 h-8 rounded-full border border-gray-800 bg-${color}-500`}
+              ></div>
+            ))}
+          </div>
+        </div>
+        <div className="w-full grid grid-cols-2 gap-8 text-sm">
+          <BuyActionButton
+            product={data}
+            className="p-3 font-semibold bg-gray-700 text-gray-50"
+          >
+            Buy now
+          </BuyActionButton>
+          <RippleButton className="p-3 font-semibold border-2 border-gray-700">
+            Add to cart
+          </RippleButton>
+        </div>
+      </div>
+      <div className="space-y-20">
+        <div className="flex items-center justify-center">
+          <Image
+            src={data.product_images[0].file}
+            alt="bag"
+            width={600}
+            height={600}
+            className="drop-shadow-2xl w-2/5 max-h-[480] object-cover"
+          />
+        </div>
+
+        <div className="grid grid-cols-4 gap-8">
+          <div className="border border-gray-700 ">
+            <Image
+              src={data.product_images[0].file}
+              alt="bag"
+              width={200}
+              height={200}
+            ></Image>
+          </div>
+          <Image
+            src={data.product_images[0].file}
+            alt="bag"
+            width={200}
+            height={200}
+          ></Image>
+          <Image
+            src={data.product_images[0].file}
+            alt="bag"
+            width={200}
+            height={200}
+          ></Image>
+          <Image
+            src={data.product_images[0].file}
+            alt="bag"
+            width={200}
+            height={200}
+          ></Image>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Page;

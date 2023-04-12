@@ -21,7 +21,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    // Ref: https://stackoverflow.com/a/74266946/13824776
+    "downlevelIteration": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
