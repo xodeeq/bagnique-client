@@ -7,6 +7,7 @@ function Page() {
     <div key={5} className="grid gap-16 md:grid-cols-2">
       <div className="space-y-4">
         <h2 className="text-gray-800 font-[500]">About Us</h2>
+        {/* @ts-expect-error Async Server Component */}
         <AboutUs />
       </div>
       <div className="space-y-4">
