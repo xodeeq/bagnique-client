@@ -25,21 +25,15 @@ function ProductItem({ product }: { product: Product }) {
       <div className="absolute inset-x-0 bottom-0 h-2/6 w-[96%] p-4 space-y-2 mx-auto rounded-t-xl text-sm bg-gray-50">
         <h3 className="font-semibold">{product.title}</h3>
         <p>$ {product.price}</p>
-        <div className="grid grid-cols-2 gap-4 justify-between items-center">
-          {/* <RippleButton
-          className="text-xs font-semibold p-2 bg-gray-700 text-gray-50 rounded-sm"
-          //   onClick={() => setUI(2)}
-        >
-          Buy Now
-        </RippleButton> */}
+        <div className="grid grid-cols-2 gap-4">
           <BuyActionButton
             product={product}
-            className="text-xs font-semibold p-2 bg-gray-700 text-gray-50 rounded-sm"
+            className="w-full text-xs font-semibold p-2 bg-gray-700 text-gray-50 rounded-sm"
           >
             Buy Now
           </BuyActionButton>
           <Link href={`products/${product.id}`}>
-            <RippleButton className="text-xs font-semibold p-2 border-2 border-gray-500 rounded-sm">
+            <RippleButton className="w-full text-xs font-semibold p-2 border-2 border-gray-500 rounded-sm">
               View Product
             </RippleButton>
           </Link>

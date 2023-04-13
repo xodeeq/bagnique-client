@@ -52,17 +52,17 @@ export default async function RootLayout({
               <h1 className="fixed hidden right-1 top-1/4 text-gray-200 text-7xl tracking-widest rotate-180 [writing-mode:vertical-rl] 2xl:block">
                 BAGNIQUE
               </h1>
-              <div className="max-w-7xl mx-auto my-4 space-y-10">
+              <div className="max-w-7xl mx-auto my-2 space-y-8 md:my-4 md:space-y-10">
                 {/* <h2 className="md:text-center text-2xl font-semibold">BAGNIQUE</h2> */}
-                <header className="grid grid-cols-6 w-full items-center">
+                <header className="flex justify-between w-full items-center md:grid md:grid-cols-6">
                   {/* <Bars3BottomLeftIcon className="w-8 h-8" /> */}
                   <Link href="/">
-                    <h2 className="text-xl font-semibold tracking-widest cursor-pointer">
+                    <h2 className="text-lg font-semibold tracking-widest cursor-pointer md:text-xl">
                       BAGNIQUE
                     </h2>
                   </Link>
 
-                  <div className="flex gap-10 items-center justify-center col-start-2 col-span-4">
+                  <div className="hidden gap-10 items-center justify-center col-start-2 col-span-4 md:flex">
                     {data.map(
                       (
                         category: { id: number; title: string },
@@ -87,10 +87,12 @@ export default async function RootLayout({
                     </Link>
                   </div>
                   <div className="flex gap-8 items-center justify-end">
-                    <SearchBar />
+                    <SearchBar screen="lg" />
                     <CartIndicator />
                   </div>
                 </header>
+
+                <SearchBar screen="sm" />
 
                 {children}
               </div>

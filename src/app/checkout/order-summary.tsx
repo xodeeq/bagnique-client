@@ -29,7 +29,7 @@ function OrderSummary() {
       <div className="space-y-10">
         {cartItems.map((item: CartProduct, index) => (
           <div key={index} className="grid grid-cols-12 gap-2 items-center">
-            <div className="col-span-2">
+            <div className="col-span-3 md:col-span-2">
               <div className="">
                 <Image
                   src={item.product.product_images[0].file}
@@ -45,20 +45,20 @@ function OrderSummary() {
               <p className="font-extralight text-gray-400">TOASB-2S</p>
               <p className="font-[500]">$ {item.product.price}</p>
             </div>
-            <div className="col-span-3">
-              <div className="grid grid-cols-4 items-center p-2 text-center border border-gray-200 rounded-sm">
+            <div className="col-span-2 md:col-span-3">
+              <div className="grid grid-rows-4 items-center p-2 text-center border border-gray-200 rounded-sm md:grid-rows-1 md:grid-cols-4">
                 <RippleButton
                   onClick={() => removeFromCart(item.product)}
-                  className=""
+                  className="flex justify-center order-last md:order-first"
                 >
                   <MinusSmallIcon className="w-5 stroke-2" />
                 </RippleButton>
-                <span className="col-span-2 font-semibold">
+                <span className="row-span-2 font-semibold md:row-span-1 md:col-span-2">
                   {item.quantity}
                 </span>
                 <RippleButton
                   onClick={() => addToCart(item.product)}
-                  className=""
+                  className="flex justify-center order-first md:order-last"
                 >
                   <PlusSmallIcon className="w-5 stroke-2" />
                 </RippleButton>

@@ -7,7 +7,7 @@ import CustomerDetail from "./customer-detail";
 
 function Page() {
   return (
-    <div key={4} className="grid gap-16 md:grid-cols-5">
+    <div key={4} className="grid gap-16 text:sm md:grid-cols-5 md:text-base">
       <div className="space-y-12 md:col-span-3">
         <div className="space-y-4">
           <h2 className="text-gray-800 font-[500]">Delivery Information</h2>

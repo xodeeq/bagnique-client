@@ -29,16 +29,55 @@ async function Page({
   const data: Product = await getData(product_id);
 
   return (
-    <div key={3} className="grid grid-cols-2 gap-36 items-end">
-      <div className="space-y-12">
+    <div
+      key={3}
+      className="grid text-sm md:text-base md:grid-cols-2 md:gap-36 md:items-end"
+    >
+      <div className="space-y-6 md:space-y-12">
         <BackButton />
 
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">{data.title}</h2>
-          <p>{data.description}</p>
+          <h2 className="text-xl font-semibold md:text-2xl">{data.title}</h2>
+          <p className="">{data.description}</p>
+        </div>
+        <div className="md:hidden">
+          <div className="space-y-20">
+            <div className="flex items-center justify-center">
+              <Image
+                src={data.product_images[0].file}
+                alt="bag"
+                width={600}
+                height={600}
+                className="drop-shadow-2xl w-full max-h-[480] object-cover"
+              />
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              <div className="border border-gray-700 ">
+                <Image
+                  src={data.product_images[0].file}
+                  alt="bag"
+                  width={400}
+                  height={400}
+                ></Image>
+              </div>
+              <Image
+                src={data.product_images[0].file}
+                alt="bag"
+                width={400}
+                height={400}
+              ></Image>
+              <Image
+                src={data.product_images[0].file}
+                alt="bag"
+                width={400}
+                height={400}
+              ></Image>
+            </div>
+          </div>
         </div>
         <div>
-          <h2 className="text-xl font-semibold">$ {data.price}</h2>
+          <h2 className="text-lg font-semibold md:text-xl">$ {data.price}</h2>
         </div>
         <div className="space-y-2">
           <h5>Color</h5>
@@ -46,7 +85,11 @@ async function Page({
             {["lime", "teal", "amber"].map((color, i) => (
               <div
                 key={i}
-                className={`w-8 h-8 rounded-full border border-gray-800 bg-${color}-500`}
+                className={
+                  "w-6 h-6 rounded-full border border-gray-800 bg-" +
+                  color +
+                  "-500 md:w-8 md:h-8"
+                }
               ></div>
             ))}
           </div>
@@ -54,16 +97,16 @@ async function Page({
         <div className="w-full grid grid-cols-2 gap-8 text-sm">
           <BuyActionButton
             product={data}
-            className="p-3 font-semibold bg-gray-700 text-gray-50"
+            className="p-2 font-semibold bg-gray-700 text-gray-50 md:p-3"
           >
             Buy now
           </BuyActionButton>
-          <RippleButton className="p-3 font-semibold border-2 border-gray-700">
+          <RippleButton className="p-2 font-semibold border-2 border-gray-700 md:p-3">
             Add to cart
           </RippleButton>
         </div>
       </div>
-      <div className="space-y-20">
+      <div className="hidden md:block md:space-y-20">
         <div className="flex items-center justify-center">
           <Image
             src={data.product_images[0].file}

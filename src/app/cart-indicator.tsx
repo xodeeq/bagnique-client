@@ -14,7 +14,7 @@ function CartIndicator() {
           {cartItems.length}
         </div>
       ) : null}
-      <ShoppingBagIcon className="w-8 h-8" />
+      <ShoppingBagIcon className="w-7 h-7 md:w-8 md:h-8" />
     </button>
   );
 }

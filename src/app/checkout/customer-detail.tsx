@@ -22,7 +22,7 @@ function CustomerDetail() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid gap-6 md:grid-cols-2">
       <div className="grid gap-2">
         <label htmlFor="customer-name" className="text-sm font-light">
           Name
@@ -113,7 +113,7 @@ function CustomerDetail() {
         />
       </div>
 
-      <div className="grid gap-2 col-span-2">
+      <div className="grid gap-2 md:col-span-2">
         <label htmlFor="customer-address" className="text-sm font-light">
           Address
         </label>

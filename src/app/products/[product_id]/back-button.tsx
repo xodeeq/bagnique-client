@@ -15,9 +15,9 @@ function BackButton() {
   return (
     <RippleButton
       onClick={() => goBack()}
-      className="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full"
+      className="w-8 h-8 flex items-center justify-center border border-gray-700 rounded-full md:w-10 md:h-10"
     >
-      <ArrowLeftIcon className="w-6" />
+      <ArrowLeftIcon className="w-5" />
     </RippleButton>
   );
 }
