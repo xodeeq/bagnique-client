@@ -26,7 +26,7 @@ async function Page({
 }: {
   params: { product_id: string };
 }) {
-  const data: Product = await getData(product_id);
+  const { data }: { data: Product } = await getData(product_id);
 
   return (
     <div
@@ -44,7 +44,9 @@ async function Page({
           <div className="space-y-20">
             <div className="flex items-center justify-center">
               <Image
-                src={data.product_images[0].file}
+                src={
+                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+                }
                 alt="bag"
                 width={600}
                 height={600}
@@ -55,20 +57,27 @@ async function Page({
             <div className="grid grid-cols-3 gap-4">
               <div className="border border-gray-700 ">
                 <Image
-                  src={data.product_images[0].file}
+                  src={
+                    process.env.CLOUDINARY_ROOT_URL +
+                    data.product_images[0].file
+                  }
                   alt="bag"
                   width={400}
                   height={400}
                 ></Image>
               </div>
               <Image
-                src={data.product_images[0].file}
+                src={
+                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+                }
                 alt="bag"
                 width={400}
                 height={400}
               ></Image>
               <Image
-                src={data.product_images[0].file}
+                src={
+                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+                }
                 alt="bag"
                 width={400}
                 height={400}
@@ -109,7 +118,7 @@ async function Page({
       <div className="hidden md:block md:space-y-20">
         <div className="flex items-center justify-center">
           <Image
-            src={data.product_images[0].file}
+            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
             alt="bag"
             width={600}
             height={600}
@@ -120,26 +129,28 @@ async function Page({
         <div className="grid grid-cols-4 gap-8">
           <div className="border border-gray-700 ">
             <Image
-              src={data.product_images[0].file}
+              src={
+                process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+              }
               alt="bag"
               width={200}
               height={200}
             ></Image>
           </div>
           <Image
-            src={data.product_images[0].file}
+            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
             alt="bag"
             width={200}
             height={200}
           ></Image>
           <Image
-            src={data.product_images[0].file}
+            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
             alt="bag"
             width={200}
             height={200}
           ></Image>
           <Image
-            src={data.product_images[0].file}
+            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
             alt="bag"
             width={200}
             height={200}

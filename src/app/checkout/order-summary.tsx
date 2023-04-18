@@ -4,13 +4,20 @@ import Image from "next/image";
 import React from "react";
 import RippleButton from "../ripple-button";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
-import { useRecoilState } from "recoil";
-import { cartState } from "@/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartState, customerDetailState } from "@/atoms";
 import { CartProduct, Product } from "@/models";
 import useCartState from "../useCartState";
+import fetcher from "@/fetcher";
+import useCustomerDetailState from "../useCustomerDetailState";
+import { useRouter } from "next/navigation";
+import clientFetcher from "@/client-fetcher";
 
 function OrderSummary() {
-  const { cartItems, addToCart, removeFromCart } = useCartState();
+  const router = useRouter();
+  const { cartItems, addToCart, removeFromCart, clearCart } = useCartState();
+  const { customerDetail, detailErrors, setDetailErrors, checked, setChecked } =
+    useCustomerDetailState();
   const [total, setTotal] = React.useState("0");
 
   React.useEffect(() => {
@@ -24,6 +31,46 @@ function OrderSummary() {
     );
   }, [cartItems]);
 
+  const placeOrder = async () => {
+    if (detailErrors.cleared) {
+      const payload = {
+        ...customerDetail,
+        order_products: cartItems.map(({ product, quantity }) => ({
+          product: product.id,
+          quantity,
+        })),
+      };
+      // const request = new Request("/api/place-order", {
+      //   method: "POST",
+      //   body: JSON.stringify(payload),
+      // });
+      // console.log(JSON.stringify(request, null, 2));
+      // const res = await fetch(request);
+      const res = await clientFetcher("commerce/place-order", "post", payload);
+      // The return value is *not* serialized
+      // You can return Date, Map, Set, etc.
+
+      // Recommendation: handle errors
+      if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await res.json();
+      console.log(JSON.stringify(data, null, 2));
+
+      if (data.hasOwnProperty("errors")) {
+        setDetailErrors(data.errors);
+      } else {
+        clearCart();
+        router.push("/");
+      }
+    } else {
+      console.log(JSON.stringify(detailErrors, null, 2));
+    }
+    setChecked(true);
+  };
+
   return (
     <React.Fragment>
       <div className="space-y-10">
@@ -32,7 +79,10 @@ function OrderSummary() {
             <div className="col-span-3 md:col-span-2">
               <div className="">
                 <Image
-                  src={item.product.product_images[0].file}
+                  src={
+                    process.env.NEXT_PUBLIC_CLOUDINARY_ROOT_URL +
+                    item.product.product_images[0].file
+                  }
                   alt="bag"
                   width={100}
                   height={100}
@@ -88,7 +138,8 @@ function OrderSummary() {
         </div>
 
         <RippleButton
-          // onClick={() => setUI(1)}
+          onClick={() => placeOrder()}
+          disabled={(checked && !detailErrors.cleared) || cartItems.length < 1}
           className="w-full p-4 text-center font-semibold bg-gray-800 text-white rounded-sm"
         >
           Confirm Order

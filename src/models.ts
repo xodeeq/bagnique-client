@@ -34,3 +34,17 @@ export interface Order {
   address: string;
   order_products: OrderProduct[];
 }
+
+export interface Customer {
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  state: string;
+  zip_code: string;
+  address: string;
+}
+
+export type CustomerErrors = {
+  [P in keyof Customer]: string[];
+};

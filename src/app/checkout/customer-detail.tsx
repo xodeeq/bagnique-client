@@ -1,17 +1,13 @@
 "use client";
 
+import { customerDetailState } from "@/atoms";
 import React from "react";
+import { useRecoilState } from "recoil";
+import useCustomerDetailState from "../useCustomerDetailState";
 
 function CustomerDetail() {
-  const [customerDetail, setCustomerDetail] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-    city: "",
-    state: "",
-    zip_code: "",
-    address: "",
-  });
+  const { customerDetail, setCustomerDetail, detailErrors, setDetailErrors } =
+    useCustomerDetailState();
 
   function handleChange(event: any): void {
     const { name, value } = event.target;
@@ -20,6 +16,23 @@ function CustomerDetail() {
       [name]: value,
     }));
   }
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const customer = localStorage.getItem("customer");
+      if (customer) {
+        setCustomerDetail(JSON.parse(customer));
+      }
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (customerDetail) {
+        localStorage.setItem("customer", JSON.stringify(customerDetail));
+      }
+    }
+  }, [customerDetail]);
 
   return (
     <div className="grid gap-6 md:grid-cols-2">
@@ -34,8 +47,15 @@ function CustomerDetail() {
           value={customerDetail.name}
           onChange={handleChange}
           placeholder="James McBagnique"
-          className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
+          className={`p-4 bg-transparent border border-${
+            detailErrors.name?.length > 0 ? "red-200" : "gray-200"
+          } text-sm outline-none focus:border-2 focus:border-gray-600`}
         />
+        {/* {detailErrors.name?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
 
       <div className="grid gap-2">
@@ -51,6 +71,11 @@ function CustomerDetail() {
           placeholder="+1 222-222-2222"
           className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
         />
+        {/* {detailErrors.phone?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
 
       <div className="grid gap-2">
@@ -66,6 +91,11 @@ function CustomerDetail() {
           placeholder="customer@bagnique.com"
           className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
         />
+        {/* {detailErrors.email?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
 
       <div className="grid gap-2">
@@ -81,6 +111,11 @@ function CustomerDetail() {
           placeholder="Hawthorne"
           className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
         />
+        {/* {detailErrors.city?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
 
       <div className="grid gap-2">
@@ -96,6 +131,11 @@ function CustomerDetail() {
           placeholder="California"
           className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
         />
+        {/* {detailErrors.state?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
 
       <div className="grid gap-2">
@@ -111,6 +151,11 @@ function CustomerDetail() {
           placeholder="90250"
           className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
         />
+        {/* {detailErrors.zip_code?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
 
       <div className="grid gap-2 md:col-span-2">
@@ -126,6 +171,11 @@ function CustomerDetail() {
           placeholder="4796 Libby Street"
           className="p-4 bg-transparent border border-gray-200 text-sm outline-none focus:border-2 focus:border-gray-600"
         />
+        {/* {detailErrors.address?.map((error, index) => (
+          <p key={index} className="text-xs font-thin text-red-600">
+            {error}
+          </p>
+        ))} */}
       </div>
     </div>
   );

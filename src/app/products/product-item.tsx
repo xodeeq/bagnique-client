@@ -10,7 +10,7 @@ function ProductItem({ product }: { product: Product }) {
     <div className="relative bg-gray-50 h-96 space-y-4 rounded-sm shadow-md">
       <div className="flex justify-center items-start w-full h-full bg-slate-200 rounded-sm">
         <Image
-          src={product.product_images[0].file}
+          src={process.env.CLOUDINARY_ROOT_URL + product.product_images[0].file}
           alt={product.title}
           width={200}
           height={400}

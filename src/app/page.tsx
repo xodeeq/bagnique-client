@@ -25,7 +25,7 @@ async function getData() {
 }
 
 async function Home() {
-  const data = await getData();
+  const { data } = await getData();
 
   return (
     <div className="md:grid md:grid-cols-7 md:gap-24">
@@ -42,7 +42,10 @@ async function Home() {
 
         <div className="space-y-2 md:hidden">
           <Image
-            src={data.top_products[0].product_images[0].file}
+            src={
+              process.env.CLOUDINARY_ROOT_URL +
+              data.top_products[0].product_images[0].file
+            }
             alt="bag"
             width={600}
             height={600}
@@ -65,25 +68,37 @@ async function Home() {
           <h4 className="text-sm">VARIATIONS (4)</h4>
           <div className="grid grid-cols-4 gap-8">
             <Image
-              src={data.top_products[0].product_images[0].file}
+              src={
+                process.env.CLOUDINARY_ROOT_URL +
+                data.top_products[0].product_images[0].file
+              }
               alt="bag"
               width={400}
               height={400}
             ></Image>
             <Image
-              src={data.top_products[0].product_images[0].file}
+              src={
+                process.env.CLOUDINARY_ROOT_URL +
+                data.top_products[0].product_images[0].file
+              }
               alt="bag"
               width={400}
               height={400}
             ></Image>
             <Image
-              src={data.top_products[0].product_images[0].file}
+              src={
+                process.env.CLOUDINARY_ROOT_URL +
+                data.top_products[0].product_images[0].file
+              }
               alt="bag"
               width={400}
               height={400}
             ></Image>
             <Image
-              src={data.top_products[0].product_images[0].file}
+              src={
+                process.env.CLOUDINARY_ROOT_URL +
+                data.top_products[0].product_images[0].file
+              }
               alt="bag"
               width={400}
               height={400}
@@ -109,7 +124,10 @@ async function Home() {
       <div className="hidden col-span-4 gap-4 md:flex">
         <div className="flex items-center justify-center w-[680px] h-[680px] bg-gray-50 rounded-full">
           <Image
-            src={data.top_products[0].product_images[0].file}
+            src={
+              process.env.CLOUDINARY_ROOT_URL +
+              data.top_products[0].product_images[0].file
+            }
             alt="bag"
             width={600}
             height={600}

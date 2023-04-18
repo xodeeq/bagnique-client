@@ -1,3 +1,5 @@
+"use client";
+
 import { cartState } from "@/atoms";
 import { CartProduct, Product } from "@/models";
 import React from "react";
@@ -46,7 +48,19 @@ function useCartState() {
     });
   };
 
-  return { cartItems: cartItems as CartProduct[], addToCart, removeFromCart };
+  const clearCart = () => {
+    setCartItems([]);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("cart");
+    }
+  };
+
+  return {
+    cartItems: cartItems as CartProduct[],
+    addToCart,
+    removeFromCart,
+    clearCart,
+  };
 }
 
 export default useCartState;

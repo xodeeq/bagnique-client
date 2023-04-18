@@ -19,7 +19,7 @@ async function getData() {
 }
 
 async function Page() {
-  const data = await getData();
+  const { data } = await getData();
 
   return (
     <div className="grid gap-12 md:grid-cols-4">

@@ -22,7 +22,7 @@ async function ProductCategory({
 }: {
   params: { category_id: string };
 }) {
-  const data = await getData(category_id);
+  const { data } = await getData(category_id);
 
   return (
     <div className="grid gap-12 md:grid-cols-4">

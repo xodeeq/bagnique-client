@@ -16,7 +16,7 @@ async function getData() {
 }
 
 async function AboutUs() {
-  const data = await getData();
+  const { data } = await getData();
 
   return (
     <div className="space-y-8">

@@ -36,6 +36,7 @@ function RippleButton(props: any) {
       {...props}
       className={
         "group min-w-max overflow-hidden relative hover:bg-opacity-90 transition-all duration-200 " +
+        (props.disabled ? "opacity-60 cursor-not-allowed " : "") +
         props.className
       }
       ref={buttonRef}
