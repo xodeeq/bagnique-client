@@ -3,7 +3,7 @@
 import { customerDetailState } from "@/atoms";
 import React from "react";
 import { useRecoilState } from "recoil";
-import useCustomerDetailState from "../useCustomerDetailState";
+import useCustomerDetailState from "./useCustomerDetailState";
 
 function CustomerDetail() {
   const { customerDetail, setCustomerDetail, detailErrors, setDetailErrors } =
@@ -35,7 +35,7 @@ function CustomerDetail() {
   }, [customerDetail]);
 
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-2">
       <div className="grid gap-2">
         <label htmlFor="customer-name" className="text-sm font-light">
           Name
@@ -158,7 +158,7 @@ function CustomerDetail() {
         ))} */}
       </div>
 
-      <div className="grid gap-2 md:col-span-2">
+      <div className="grid gap-2 sm:col-span-2 md:col-span-2">
         <label htmlFor="customer-address" className="text-sm font-light">
           Address
         </label>

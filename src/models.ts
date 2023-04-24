@@ -48,3 +48,8 @@ export interface Customer {
 export type CustomerErrors = {
   [P in keyof Customer]: string[];
 };
+
+export interface Category {
+  id: number;
+  title: string;
+}

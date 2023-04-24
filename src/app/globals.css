@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --bg-gray: @apply bg-gray-100;
+  --fg-gray: @apply text-gray-800;
+}
+
+.theme-inverted {
+  --bg-gray: @apply bg-gray-800;
+  --fg-gray: @apply text-gray-100;
 }
 
 @media (prefers-color-scheme: dark) {

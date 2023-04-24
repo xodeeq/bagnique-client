@@ -5,16 +5,19 @@ import React from "react";
 import RippleButton from "../ripple-button";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { cartState, customerDetailState } from "@/atoms";
+import { cartState, customerDetailState, deliveryScheduleState } from "@/atoms";
 import { CartProduct, Product } from "@/models";
 import useCartState from "../useCartState";
 import fetcher from "@/fetcher";
-import useCustomerDetailState from "../useCustomerDetailState";
+import useCustomerDetailState from "./useCustomerDetailState";
 import { useRouter } from "next/navigation";
 import clientFetcher from "@/client-fetcher";
 
 function OrderSummary() {
   const router = useRouter();
+  const [deliverySchedule, setDeliverySchedule] = useRecoilState(
+    deliveryScheduleState
+  );
   const { cartItems, addToCart, removeFromCart, clearCart } = useCartState();
   const { customerDetail, detailErrors, setDetailErrors, checked, setChecked } =
     useCustomerDetailState();
@@ -39,12 +42,12 @@ function OrderSummary() {
           product: product.id,
           quantity,
         })),
+        delivery_schedule: deliverySchedule.filled ? deliverySchedule : null,
       };
       // const request = new Request("/api/place-order", {
       //   method: "POST",
       //   body: JSON.stringify(payload),
       // });
-      // console.log(JSON.stringify(request, null, 2));
       // const res = await fetch(request);
       const res = await clientFetcher("commerce/place-order", "post", payload);
       // The return value is *not* serialized
@@ -86,7 +89,7 @@ function OrderSummary() {
                   alt="bag"
                   width={100}
                   height={100}
-                  className="drop-shadow-2xl"
+                  className=""
                 ></Image>
               </div>
             </div>

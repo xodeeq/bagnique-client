@@ -22,7 +22,6 @@ function CartIndicator() {
     if (typeof window !== "undefined") {
       if (cartItems) {
         localStorage.setItem("cart", JSON.stringify(cartItems));
-        console.log(cartItems);
       }
     }
   }, [cartItems]);
@@ -35,7 +34,7 @@ function CartIndicator() {
             {cartItems.length}
           </div>
         ) : null}
-        <ShoppingBagIcon className="w-7 h-7 md:w-8 md:h-8" />
+        <ShoppingBagIcon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
       </button>
     </Link>
   );

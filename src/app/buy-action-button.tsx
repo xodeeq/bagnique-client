@@ -18,7 +18,6 @@ function BuyActionButton(props: any) {
     props.onClick && props.onClick(event);
     addToCart(props.product);
     setOpen(true);
-    console.log(open);
   };
 
   const close = () => {

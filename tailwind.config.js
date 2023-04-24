@@ -20,6 +20,18 @@ module.exports = {
           "100%": { left: "125%" },
         },
       },
+      textColor: {
+        // color in Icelandic
+        lit: {
+          primmary: "var(--fg-gray)",
+        },
+      },
+      backgroundColor: {
+        // color in Icelandic
+        lit: {
+          primmary: "var(--bg-gray)",
+        },
+      },
     },
   },
   plugins: [],

@@ -3,6 +3,7 @@ import fetcher from "@/fetcher";
 import { Product } from "@/models";
 
 import ProductItem from "./product-item";
+import ProductGrid from "./product-grid";
 
 async function getData() {
   const res = await fetcher("commerce/products");
@@ -21,13 +22,7 @@ async function getData() {
 async function Page() {
   const { data } = await getData();
 
-  return (
-    <div className="grid gap-12 md:grid-cols-4">
-      {data.map((product: Product, index: number) => (
-        <ProductItem product={product} key={index} />
-      ))}
-    </div>
-  );
+  return <ProductGrid products={data} />;
 }
 
 export default Page;

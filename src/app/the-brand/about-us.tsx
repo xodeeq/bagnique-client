@@ -1,4 +1,5 @@
 import fetcher from "@/fetcher";
+import Image from "next/image";
 import React from "react";
 
 async function getData() {
@@ -20,6 +21,15 @@ async function AboutUs() {
 
   return (
     <div className="space-y-8">
+      <div>
+        <Image
+          src={process.env.CLOUDINARY_ROOT_URL + data.buniess_image}
+          alt="business image"
+          width={600}
+          height={600}
+          className="drop-shadow-2xl w-full h-auto max-w-[240px] max-h-[240px] object-cover rounded-full"
+        />
+      </div>
       <h3>{data.short_about_us}</h3>
       {data.long_about_us
         .split(/\r?\n/)

@@ -2,6 +2,7 @@ import React from "react";
 import ProductItem from "../../product-item";
 import fetcher from "@/fetcher";
 import { Product } from "@/models";
+import ProductGrid from "../../product-grid";
 
 async function getData(category_id: string) {
   const res = await fetcher(`commerce/product-category/${category_id}`);
@@ -24,13 +25,7 @@ async function ProductCategory({
 }) {
   const { data } = await getData(category_id);
 
-  return (
-    <div className="grid gap-12 md:grid-cols-4">
-      {data.map((product: Product, index: number) => (
-        <ProductItem product={product} key={index} />
-      ))}
-    </div>
-  );
+  return <ProductGrid products={data} />;
 }
 
 export default ProductCategory;

@@ -1,7 +1,7 @@
 "use client";
 
-import { customerDetailState, detailErrorsState } from "@/atoms";
-import { CustomerErrors } from "@/models";
+import { detailErrorsState } from "@/atoms";
+import { customerDetailState } from "@/atoms";
 import React from "react";
 import { useRecoilState } from "recoil";
 
@@ -26,8 +26,6 @@ function useCustomerDetailState() {
       }
     });
     setDetailErrors(errors);
-    console.log(JSON.stringify(customerDetail, null, 2));
-    console.log(JSON.stringify(detailErrors, null, 2));
   }, [customerDetail]);
 
   return {

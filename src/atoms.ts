@@ -31,3 +31,13 @@ export const detailErrorsState = atom({
     cleared: true,
   },
 });
+
+export const deliveryScheduleState = atom({
+  key: "deliveryScheduleState",
+  default: {
+    available_from: "",
+    available_to: "",
+    note: "",
+    filled: false,
+  },
+});

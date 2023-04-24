@@ -8,17 +8,17 @@ import RippleButton from "../ripple-button";
 function ProductItem({ product }: { product: Product }) {
   return (
     <div className="relative bg-gray-50 h-96 space-y-4 rounded-sm shadow-md">
-      <div className="flex justify-center items-start w-full h-full bg-slate-200 rounded-sm">
+      <div className="flex justify-center items-start w-full h-full bg-slate-200 rounded-sm overflow-hidden">
         <Image
           src={process.env.CLOUDINARY_ROOT_URL + product.product_images[0].file}
           alt={product.title}
           width={200}
           height={400}
-          className="w-full bg-slate-200"
+          className="w-full h-full object-cover bg-slate-200"
         ></Image>
       </div>
       <div className="absolute inset-x-0 bottom-[36%] mx-auto flex gap-1 justify-center items-center">
-        <div className="w-2 h-2 rounded-full bg-gray-500"></div>
+        <div className="w-2 h-2 rounded-full bg-gray-700/70"></div>
         <div className="w-2 h-2 rounded-full border border-gray-500"></div>
         <div className="w-2 h-2 rounded-full border border-gray-500"></div>
       </div>
