@@ -1,12 +1,8 @@
-import Head from "next/head";
 import React from "react";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import RippleButton from "./ripple-button";
 import fetcher from "@/fetcher";
 import Link from "next/link";
-import BuyActionButton from "./buy-action-button";
 import Carousel from "./(components)/carousel";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -63,7 +59,7 @@ async function Home() {
 
         <p className="text-xl lg:text-2xl">$ {data.top_products[0].price}</p>
 
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <h4 className="text-sm">VARIATIONS (4)</h4>
           <div className="grid grid-cols-4 gap-8">
             <Image
@@ -103,7 +99,7 @@ async function Home() {
               height={400}
             ></Image>
           </div>
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-2 gap-4 items-center lg:gap-8">
           <Link href={`/products/categories/${data.top_category.id}`}>

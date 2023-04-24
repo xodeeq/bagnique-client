@@ -1,8 +1,5 @@
 import React from "react";
 import fetcher from "@/fetcher";
-import { Product } from "@/models";
-
-import ProductItem from "./product-item";
 import ProductGrid from "./product-grid";
 
 async function getData() {

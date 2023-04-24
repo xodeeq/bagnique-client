@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import RippleButton from "@/app/ripple-button";
 import fetcher from "@/fetcher";
 import { Product } from "@/models";
 import BackButton from "./back-button";
 import BuyActionButton from "@/app/buy-action-button";
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 
 async function getData(product_id: string) {
   const res = await fetcher(`commerce/product/${product_id}`);
@@ -43,45 +43,64 @@ async function Page({
         <div className="md:hidden">
           <div className="space-y-20">
             <div className="flex items-center justify-center">
-              <Image
-                src={
-                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
-                }
-                alt="bag"
-                width={600}
-                height={600}
-                className="drop-shadow-2xl w-full max-h-[480] object-cover"
-              />
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="border border-gray-700 ">
+              {data.product_images.length > 0 ? (
                 <Image
                   src={
                     process.env.CLOUDINARY_ROOT_URL +
                     data.product_images[0].file
                   }
                   alt="bag"
-                  width={400}
-                  height={400}
-                ></Image>
-              </div>
-              <Image
-                src={
-                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
-                }
-                alt="bag"
-                width={400}
-                height={400}
-              ></Image>
-              <Image
-                src={
-                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
-                }
-                alt="bag"
-                width={400}
-                height={400}
-              ></Image>
+                  width={600}
+                  height={600}
+                  className="drop-shadow-2xl w-full max-h-[480] object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-transparent flex flex-col items-center justify-center text-gray-400">
+                  <ShoppingBagIcon className=" w-32 h-32" />
+                  <p>No Images</p>
+                </div>
+              )}
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              {data.product_images.length > 0 ? (
+                <>
+                  <div className="border border-gray-700 ">
+                    <Image
+                      src={
+                        process.env.CLOUDINARY_ROOT_URL +
+                        data.product_images[0].file
+                      }
+                      alt="bag"
+                      width={400}
+                      height={400}
+                    ></Image>
+                  </div>
+                  <Image
+                    src={
+                      process.env.CLOUDINARY_ROOT_URL +
+                      data.product_images[0].file
+                    }
+                    alt="bag"
+                    width={400}
+                    height={400}
+                  ></Image>
+                  <Image
+                    src={
+                      process.env.CLOUDINARY_ROOT_URL +
+                      data.product_images[0].file
+                    }
+                    alt="bag"
+                    width={400}
+                    height={400}
+                  ></Image>
+                </>
+              ) : (
+                <div className="w-full h-full bg-transparent flex flex-col items-center justify-center text-gray-400">
+                  <ShoppingBagIcon className=" w-20 h-20" />
+                  <p>No Images</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -117,44 +136,69 @@ async function Page({
       </div>
       <div className="hidden md:block md:space-y-20">
         <div className="flex items-center justify-center">
-          <Image
-            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
-            alt="bag"
-            width={600}
-            height={600}
-            className="drop-shadow-2xl w-2/5 max-h-[480] object-cover"
-          />
-        </div>
-
-        <div className="grid grid-cols-4 gap-8">
-          <div className="border border-gray-700 ">
+          {data.product_images.length > 0 ? (
             <Image
               src={
                 process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
               }
               alt="bag"
-              width={200}
-              height={200}
-            ></Image>
-          </div>
-          <Image
-            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
-            alt="bag"
-            width={200}
-            height={200}
-          ></Image>
-          <Image
-            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
-            alt="bag"
-            width={200}
-            height={200}
-          ></Image>
-          <Image
-            src={process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file}
-            alt="bag"
-            width={200}
-            height={200}
-          ></Image>
+              width={600}
+              height={600}
+              className="drop-shadow-2xl w-2/5 max-h-[480] object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-transparent flex flex-col items-center justify-center text-gray-400">
+              <ShoppingBagIcon className=" w-32 h-32" />
+              <p>No Images</p>
+            </div>
+          )}
+        </div>
+
+        <div className="grid grid-cols-4 gap-8">
+          {data.product_images.length > 0 ? (
+            <>
+              <div className="border border-gray-700 ">
+                <Image
+                  src={
+                    process.env.CLOUDINARY_ROOT_URL +
+                    data.product_images[0].file
+                  }
+                  alt="bag"
+                  width={200}
+                  height={200}
+                ></Image>
+              </div>
+              <Image
+                src={
+                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+                }
+                alt="bag"
+                width={200}
+                height={200}
+              ></Image>
+              <Image
+                src={
+                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+                }
+                alt="bag"
+                width={200}
+                height={200}
+              ></Image>
+              <Image
+                src={
+                  process.env.CLOUDINARY_ROOT_URL + data.product_images[0].file
+                }
+                alt="bag"
+                width={200}
+                height={200}
+              ></Image>
+            </>
+          ) : (
+            <div className="w-full h-full bg-transparent flex flex-col items-center justify-center text-gray-400">
+              <ShoppingBagIcon className=" w-20 h-20" />
+              <p>No Images</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

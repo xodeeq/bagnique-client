@@ -3,7 +3,11 @@
 import Image from "next/image";
 import React from "react";
 import RippleButton from "../ripple-button";
-import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import {
+  MinusSmallIcon,
+  PlusSmallIcon,
+  ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState, customerDetailState, deliveryScheduleState } from "@/atoms";
 import { CartProduct, Product } from "@/models";
@@ -81,16 +85,23 @@ function OrderSummary() {
           <div key={index} className="grid grid-cols-12 gap-2 items-center">
             <div className="col-span-3 md:col-span-2">
               <div className="">
-                <Image
-                  src={
-                    process.env.NEXT_PUBLIC_CLOUDINARY_ROOT_URL +
-                    item.product.product_images[0].file
-                  }
-                  alt="bag"
-                  width={100}
-                  height={100}
-                  className=""
-                ></Image>
+                {item.product.product_images.length > 0 ? (
+                  <Image
+                    src={
+                      process.env.NEXT_PUBLIC_CLOUDINARY_ROOT_URL +
+                      item.product.product_images[0].file
+                    }
+                    alt="bag"
+                    width={100}
+                    height={100}
+                    className="w-full h-auto"
+                  ></Image>
+                ) : (
+                  <div className="w-full h-full bg-transparent flex flex-col items-center justify-center text-gray-400">
+                    <ShoppingBagIcon className=" w-10 h-10" />
+                    <p className="text-xs">No Images</p>
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-span-7 space-y-1">

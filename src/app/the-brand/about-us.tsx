@@ -30,7 +30,7 @@ async function AboutUs() {
           className="drop-shadow-2xl w-full h-auto max-w-[240px] max-h-[240px] object-cover rounded-full"
         />
       </div>
-      <h3>{data.short_about_us}</h3>
+      <h3 className="font-semibold text-base">{data.short_about_us}</h3>
       {data.long_about_us
         .split(/\r?\n/)
         .map((paragraph: string, index: number) => (
