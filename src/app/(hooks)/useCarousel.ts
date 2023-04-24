@@ -14,7 +14,7 @@ function useCarousel(itemsCount: number) {
         } else return 0;
       });
     }, 3000);
-  }, []);
+  }, [itemsCount]);
 
   return { activeSlide };
 }
